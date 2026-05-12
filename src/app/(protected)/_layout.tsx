@@ -8,7 +8,7 @@ export default function ProtectedLayout() {
   }
   return (
     <Stack>
-      <Stack.Screen name="(tab)" />
+      <Stack.Screen name="(tabs)" />
     </Stack>
   );
 }
