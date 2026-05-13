@@ -1,18 +1,13 @@
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
-} from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { useColorScheme } from "react-native";
 
+import theme from "@/theme/theme";
+import { ThemeProvider } from "@shopify/restyle";
 import { Stack } from "expo-router";
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+    <ThemeProvider theme={theme}>
       <Stack>
         <Stack.Screen name="(protected)" options={{ headerShown: false }} />
         <Stack.Screen name="sign-in" options={{ headerShown: false }} />
