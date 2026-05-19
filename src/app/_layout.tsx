@@ -8,6 +8,7 @@ import { Stack } from "expo-router";
 
 export default function RootLayout() {
   const [loaded] = useFonts({
+    IcoMoon: require("../../assets/icons/icomoon.ttf"),
     PoppinsBlack: require("../../assets/fonts/Poppins-Black.ttf"),
     PoppinsBlackItalic: require("../../assets/fonts/Poppins-BlackItalic.ttf"),
     PoppinsBold: require("../../assets/fonts/Poppins-Bold.ttf"),
