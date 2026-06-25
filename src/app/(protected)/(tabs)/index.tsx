@@ -3,11 +3,11 @@ import { CityCard } from "@/components/CityCard";
 import { CityFilter } from "@/components/containers/CityFilter";
 import { Screen } from "@/components/Screen";
 import { categories } from "@/data/categories";
-import { cityPreviewList } from "@/data/cities";
+import { useCities } from "@/data/useCities";
 import { useAppTheme } from "@/theme/useAppTheme";
 import { CityPreview } from "@/types";
 import { useScrollToTop } from "@react-navigation/native";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { FlatList, ListRenderItemInfo } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -15,6 +15,12 @@ export default function HomeScreen() {
   const { spacing } = useAppTheme();
   const flatListRef = useRef(null);
   const { top } = useSafeAreaInsets();
+  const [cityName, setCityName] = useState("");
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(
+    null,
+  );
+  const { cityPreviewList } = useCities(cityName, selectedCategoryId);
+
   useScrollToTop(flatListRef);
   function renderItem({ item }: ListRenderItemInfo<CityPreview>) {
     return (
@@ -37,7 +43,15 @@ export default function HomeScreen() {
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
-        ListHeaderComponent={<CityFilter categories={categories} />}
+        ListHeaderComponent={
+          <CityFilter
+            categories={categories}
+            cityName={cityName}
+            onChangeCityName={setCityName}
+            selectedCategoryId={selectedCategoryId}
+            onChangeSelectedCategoryId={setSelectedCategoryId}
+          />
+        }
       />
     </Screen>
   );
