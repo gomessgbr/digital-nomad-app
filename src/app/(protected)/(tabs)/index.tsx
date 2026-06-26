@@ -4,6 +4,7 @@ import { CityFilter } from "@/components/containers/CityFilter";
 import { Screen } from "@/components/Screen";
 import { categories } from "@/data/categories";
 import { useCities } from "@/data/useCities";
+import { useDebounce } from "@/hooks/useDebounce";
 import { useAppTheme } from "@/theme/useAppTheme";
 import { CityPreview } from "@/types";
 import { useScrollToTop } from "@react-navigation/native";
@@ -19,7 +20,9 @@ export default function HomeScreen() {
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(
     null,
   );
-  const { cityPreviewList } = useCities(cityName, selectedCategoryId);
+
+  const debouncedCityName = useDebounce(cityName);
+  const { cityPreviewList } = useCities(debouncedCityName, selectedCategoryId);
 
   useScrollToTop(flatListRef);
   function renderItem({ item }: ListRenderItemInfo<CityPreview>) {
