@@ -22,7 +22,7 @@ export function IconButton({ iconName, onPress }: IconButtonProps) {
         borderRadius="rounded"
         style={{ boxShadow: boxShadows.primary }}
       >
-        <Icon name={iconName} />
+        <Icon name={iconName} color="pureWhite" />
       </Box>
     </Pressable>
   );
