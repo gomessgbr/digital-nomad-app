@@ -22,7 +22,10 @@ export default function HomeScreen() {
   );
 
   const debouncedCityName = useDebounce(cityName);
-  const { cityPreviewList } = useCities(debouncedCityName, selectedCategoryId);
+  const { cityPreviewList } = useCities({
+    name: debouncedCityName,
+    categoryId: selectedCategoryId,
+  });
 
   useScrollToTop(flatListRef);
   function renderItem({ item }: ListRenderItemInfo<CityPreview>) {

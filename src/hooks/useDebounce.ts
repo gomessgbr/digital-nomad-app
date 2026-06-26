@@ -11,7 +11,7 @@ export function useDebounce<T>(value: T, delay = 500) {
     return () => {
       clearTimeout(timer);
     };
-  }, [value]);
+  }, [value, delay]);
 
   return debouncedValue;
 }
