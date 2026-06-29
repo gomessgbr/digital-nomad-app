@@ -1,11 +1,20 @@
+import { Screen } from "@/components/Screen";
+import { CityDetailsHeader } from "@/containers/CityDetailsHeader";
+import { CityDetailsInfo } from "@/containers/CityDetailsInfo";
+import { CityDetailsMap } from "@/containers/CityDetailsMap";
+import { CityDetailsRelatedCities } from "@/containers/CityDetailsRelatedCities";
+import { CityDetailsTouristAttractions } from "@/containers/CityDetailsTouristAttractions";
 import { useLocalSearchParams } from "expo-router";
-import { Text, View } from "react-native";
 
 export default function CityDetails() {
   const { id } = useLocalSearchParams();
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Esse foi o ID passado === {id}</Text>
-    </View>
+    <Screen>
+      <CityDetailsHeader />
+      <CityDetailsInfo />
+      <CityDetailsTouristAttractions />
+      <CityDetailsMap />
+      <CityDetailsRelatedCities />
+    </Screen>
   );
 }
